@@ -1,0 +1,10 @@
+# add my user
+PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+TZ='Asia/Shanghai'; export TZ
+export LD_LIBRARY_PATH="/lib:/usr/lib:/usr/local/lib"
+[ -z "$TMUX" ] && export TERM=xterm-256color 
+
+alias ack="ack -Hn"
+alias grep="grep -Hn"
+alias cctags="ctags --langmap=c++:+.c --languages=c++ -R ." 
+
