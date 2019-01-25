@@ -17,12 +17,13 @@ sudo apt install git vim tmux htop npm cppman ncdu silversearcher-ag \
                  exuberant-ctags graphviz
 
 # fzf
-mkdir -p ~./download
-cd ~./download
+mkdir -p ~/.download
+cd ~/.download
 wget https://github.com/junegunn/fzf/archive/0.17.5.tar.gz -O fzf.tar.gz 
 tar xvf fzf.tar.gz
 cd fzf-0.17.5
 ./install      # will install in ~/.fzf
+source ~/.bashrc
 
 # Anaconda
 mkdir -p ~./download
@@ -39,7 +40,11 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | b
 source ~/.bashrc
 nvm install stable
 sudo apt install git-core
-npm install -g hexo-cli
+npm install hexo-cli
+
+# tldr
+cd .npm
+npm install -g tldr
 
 # secureCrt ansi color
 #<binary name="ANSI Color RGB">27 28 22 00 ff 00 00 00 ff 00 00 00 a0 a0 00 00 13 ec 23 00 ff ff 00 00 ff ff ff 00 f8 f8 f2 00 80 80 80 00 a6 e2 2e 00 66 ed db 00 f9 26 72 00 f9 26 72 00 e6 db 74 00 00 ff ff 00 66 d9 ef 00</binary>
