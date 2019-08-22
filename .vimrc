@@ -59,8 +59,35 @@ nnoremap <silent> <Leader>2 gt
 
 set showtabline=1
 
+if exists("+showtabline")
+  function! MyTabLine()
+    let s = ''
+    let t = tabpagenr()
+    let i = 1
+    while i <= tabpagenr('$')
+      let buflist = tabpagebuflist(i)
+      let winnr = tabpagewinnr(i)
+      " let s .= '%'. i. 'T'            "tab number
+      let s .= (i == t ? '%1*' : '%2*') "number in black background 
+      let s .= i
+      let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#' ) " highlight
+      let file = bufname(buflist[winnr - 1])
+      let file = fnamemodify(file, ':p:t') "filename without path
+      if file == ''
+        let file = '[NEW]'
+      endif
+      "let s .= file
+      let s .= ' '. file. ' '
+      let i += 1 
+    endwhile
+    return s
+  endfunction
+  set tabline=%!MyTabLine()
+endif
+
 " select all
 nnoremap <Leader>sa ggVG
+nmap <Leader>5 :AT<CR>
 
 "command line control
 cnoremap <C-j> <t_kd>
@@ -68,12 +95,10 @@ cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-
 "Set the charactor encoding
 set fileencodings=utf-8,gbk,gb2312,gb18030,cs-bom,cp936,latin1
 set encoding=utf-8
 set termencoding=utf-8
-
 
 call plug#begin('~/.vim/plugged')
 Plug 'vim-scripts/a.vim'
@@ -83,11 +108,12 @@ Plug 'kien/ctrlp.vim'
 Plug 'chrisbra/csv.vim'
 Plug 'bogado/file-line'
 Plug 'junegunn/fzf'
+Plug 'dgryski/vim-godef'
 Plug 'plasticboy/vim-markdown'
 Plug 'tomasr/molokai'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'myusuf3/numbers.vim'
+"Plug 'myusuf3/numbers.vim'
 Plug 'vim-scripts/OmniCppComplete'
 Plug 'unblevable/quick-scope'
 Plug 'kien/rainbow_parentheses.vim'
@@ -96,11 +122,11 @@ Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
 Plug 'edkolev/tmuxline.vim'
-Plug 'sirver/ultisnips'
+"Plug 'sirver/ultisnips'
 Plug 'bling/vim-airline'
-Plug 'bling/vim-bufferline'
+"Plug 'bling/vim-bufferline'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'honza/vim-snippets'
+"Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'lervag/vimtex'
 Plug 'vimwiki/vimwiki'
@@ -119,7 +145,6 @@ Plug 'othree/xml.vim'
 call plug#end()
 
 " vim-scripts/a.vim
-nmap <Leader>is :AT<CR>
 
 " air-line-theme
 "let g:airline_theme='molokai'
@@ -141,9 +166,9 @@ let g:airline_right_alt_sep = '❮'
 "let g:airline#extensions#tabline#enabled = 1
 
 " buffer-line
-nnoremap <silent> <Leader>1   :bp<CR>
-nnoremap <silent> <Leader>2   :bn<CR>
-nnoremap <silent> <Leader>3   :bd<CR>
+"nnoremap <silent> <Leader>1   :bp<CR>
+"nnoremap <silent> <Leader>2   :bn<CR>
+"nnoremap <silent> <Leader>3   :bd<CR>
 
 " ctlp
 let g:ctrlp_map = '<c-p>'
@@ -175,7 +200,6 @@ let g:rbpt_colorpairs = [
     \ ['darkmagenta', 'DarkOrchid3'],
     \ ['brown',       'firebrick3'],
     \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
     \ ['darkmagenta', 'DarkOrchid3'],
     \ ['Darkblue',    'firebrick3'],
     \ ['darkgreen',   'RoyalBlue3'],
@@ -191,7 +215,7 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 " majutsushi/tagbar
-nmap <F8> :TagbarToggle<CR>
+nmap <Leader>tt :TagbarToggle<CR>
 
 " tomasr/molokai
 set bg=dark

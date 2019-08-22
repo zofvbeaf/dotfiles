@@ -9,6 +9,6 @@ export LS_COLORS
 
 alias ack="ack -Hn"
 alias grep="grep -Hn"
-alias cctags="ctags --langmap=c++:+.c --languages=c++ -R ." 
+alias ctagss="ctags --langmap=c++:+.c --languages=c++ -R ." 
 
 
