@@ -32,7 +32,6 @@ set wildmode=list:longest:full "cmd prompt
 set completeopt=longest,menu
 set colorcolumn=80  "Global color Normal 2nd
 
-set pastetoggle=<F11>
 
 autocmd! bufwritepost .vimrc source % " source .vimrc
 
@@ -58,6 +57,8 @@ nnoremap <silent> <Leader>1 gT
 nnoremap <silent> <Leader>2 gt
 
 set showtabline=1
+
+set pastetoggle=<Leader>pt
 
 if exists("+showtabline")
   function! MyTabLine()
