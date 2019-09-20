@@ -26,8 +26,8 @@ cd fzf-0.17.5
 source ~/.bashrc
 
 # Anaconda
-mkdir -p ~./download
-cd ~./download
+mkdir -p ~/.download
+cd ~/.download
 wget http://mirrors.ustc.edu.cn/anaconda/archive/Anaconda3-5.3.1-Linux-x86_64.sh
 bash Anaconda3-5.3.1-Linux-x86_64.sh -p ~/.anaconda3
 
